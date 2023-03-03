@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - CutObj
+  - backFruit
+  - fruit
+  - MixImage
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: back
+    uniqueID: 1340445747
+    locked: 0
+  - name: front
+    uniqueID: 2841381219
+    locked: 0
+  - name: Paticle
+    uniqueID: 138313457
+    locked: 0
+  - name: EndScene
+    uniqueID: 3309778833
+    locked: 0
