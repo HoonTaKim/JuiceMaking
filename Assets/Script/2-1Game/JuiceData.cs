@@ -4,18 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-//[System.Serializable]
-//public class JuiceInfo
-//{
-//    public string juiceName;
-//    public Sprite juiceImage;
-
-
-//    public Sprite leftColorCup_Image = null;
-
-//    public Sprite rightColorCup_Image = null;
-//}
-
 public class JuiceData : MonoBehaviour
 {
     private bool setComplete = false;
@@ -24,14 +12,11 @@ public class JuiceData : MonoBehaviour
     [SerializeField] private int fruitCount = 0;          // 과일의 전체 개수
     [SerializeField] private Transform storageParent = null;            // 과일의 초기 위치
     [SerializeField] private Image fruitPrefab = null;                  // 과일 프리팹
-    //[SerializeField] private List<Sprite> sliceTextuerList = null;      // 잘린 과일 이미지 리스트
     private List<Vector2> fruitPosList = new List<Vector2>();           // 과일 바구니안 과일이 놓일 위치 리스트
     private List<Sprite> saveFruit_List = new List<Sprite>();           // 모든 과일들의 스프라이트를 저장할 리스트
     public List<string> fruit_DataList = new List<string>();            // csv를 통해 받을 과일 스프라이트 정보 리스트
     public List<Sprite> leftCupFruit_Image = new List<Sprite>();
     public List<Sprite> rightCupFruit_Image = new List<Sprite>();
-
-    //[SerializeField] private List<JuiceInfo> fruitInfoList = null;      // CSV를 통해 받아오기때문에 삭제 예정
 
     [Header("컵 데이터")]
     [SerializeField] private Image leftCup = null;                      // 왼쪽 컵 정보
@@ -88,7 +73,7 @@ public class JuiceData : MonoBehaviour
         for (int i = 0; i < orderSheetList.Count; i++)
         {
             data = orderSheet_DataList[i].Split(",");
-            orderSheetList[i].GetComponent<RawImage>().texture = Resources.Load<Texture>(data[7]);
+            orderSheetList[i].GetComponent<RawImage>().texture = Resources.Load<Texture>("SetJuiceImage/" + data[7]);
             orderSheetList[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = data[1];
         }
     }
@@ -116,7 +101,7 @@ public class JuiceData : MonoBehaviour
             }
         }
 
-        GameManager.Inst.saveOrderImage = Resources.Load<Sprite>("Image/JuiceImage/" + orderData[7] + "_Result");
+        GameManager.Inst.saveOrderImage = Resources.Load<Sprite>("JuiceImage/" + orderData[7] + "_Result");
         GameManager.Inst.saveOrderName = orderData[1];
 
         FruitCase leftCase = leftCup.GetComponent<FruitCase>();
@@ -132,7 +117,7 @@ public class JuiceData : MonoBehaviour
         AddFruit(orderData, 4, rightCupFruit_Image, false);
 
         // 게임 스코어를 왼쪽과 오른쪽 컵의 개수를 더해 계산
-        GameManager.Inst.Set_MaxScore(leftCup_Count + rightCup_Count);
+        GameManager.Inst.Set_CupMaxScore(leftCup_Count + rightCup_Count);
 
         // 왼쪽컵과 오른쪽컵의 입력가능한 개수 입력
         leftCase.SetCupMaxCount(leftCup_Count);
@@ -156,7 +141,6 @@ public class JuiceData : MonoBehaviour
         AnswerFruintSeting(rightCup_Count, rightCupFruit_Image, rightCup_Id, true);                     // 오른쪽 컵 들어갈 과일들
         AnswerFruintSeting(fruitCount - (leftCup_Count + rightCup_Count), saveFruit_List, 0, false);    // 이외의 과일들
 
-        Debug.Log("완??????????????료?????????????????????");
         setComplete = true;
     }
 
@@ -181,18 +165,17 @@ public class JuiceData : MonoBehaviour
 
             if (chack)
             {
-                saveFruit_List.Add(Resources.Load<Sprite>("Image/Fruit/" + tempArr[1]));
+                saveFruit_List.Add(Resources.Load<Sprite>("Fruit/" + tempArr[1]));
             }
 
             if (orderData[idx] == tempArr[2])
             {
-                spriteList.Add(Resources.Load<Sprite>("Image/Fruit/" + tempArr[1]));
-                saveFruit_List.Remove(Resources.Load<Sprite>("Image/Fruit/" + tempArr[1]));
+                spriteList.Add(Resources.Load<Sprite>("Fruit/" + tempArr[1]));
+                saveFruit_List.Remove(Resources.Load<Sprite>("Fruit/" + tempArr[1]));
             }
         }
     }
 
-    //수정할수있으면해보자
     // 컵 색깔 입력
     FRUITCOLOR getCupColorFromSprite(Sprite sp)
     {
@@ -234,7 +217,7 @@ public class JuiceData : MonoBehaviour
     // 컵 스프라이트 입력
     public Sprite CupSpriteSeting(int id)
     {
-        string[] data;
+        string[] data = new string[0];
         Sprite sp = null;
 
         switch (id)
@@ -242,63 +225,36 @@ public class JuiceData : MonoBehaviour
             case 1:
                 // 빨강
                 data = cup_DataList[0].Split(",");
-                sp = Resources.Load<Sprite>(data[1]);
                 break;
             case 2:
                 // 주황
                 data = cup_DataList[1].Split(",");
-                sp = Resources.Load<Sprite>(data[1]);
                 break;
             case 3:
                 // 노랑
                 data = cup_DataList[2].Split(",");
-                sp = Resources.Load<Sprite>(data[1]);
-                break;
-            case 7:
-                // 파랑
-                data = cup_DataList[3].Split(",");
-                sp = Resources.Load<Sprite>(data[1]);
                 break;
             case 5:
                 // 초록
                 data = cup_DataList[4].Split(",");
-                sp = Resources.Load<Sprite>(data[1]);
+                break;
+            case 7:
+                // 파랑
+                data = cup_DataList[3].Split(",");
                 break;
             case 8:
                 // 보라
                 data = cup_DataList[5].Split(",");
-                sp = Resources.Load<Sprite>(data[1]);
                 break;
             case 10:
                 // 하양
                 data = cup_DataList[6].Split(",");
-                sp = Resources.Load<Sprite>(data[1]);
                 break;
         }
+
+        sp = Resources.Load<Sprite>("ColorCup/" + data[1]);
+
         return sp;
-    }
-
-    // 저장할 _list와 저장시킬 데이터를 가지고있는 _addList
-    public void SaveTexture(List<Sprite> _list, List<Sprite> _addList)
-    {
-        for (int i = 0; i < _addList.Count; i++)
-        {
-            _list.Add(_addList[i]);
-        }
-    }
-
-    public void SaveSlice(List<Sprite> _list, List<Sprite> _addList, List<Sprite> _chackList, string _number)
-    {
-        for (int i = 0; i < _addList.Count; i++)
-        {
-            for (int j = 0; j < _chackList.Count; j++)
-            {
-                if (_addList[i].name == _chackList[j].name + _number)
-                {
-                    _list.Add(_addList[i]);
-                }
-            }
-        }
     }
 
     // 랜덤한 위치에 과일 출현시키는 함수
@@ -320,8 +276,8 @@ public class JuiceData : MonoBehaviour
             if (_dirListOn)
             {
                 GameManager.Inst.Get_FruitSpriteList.Add(_fruitSpriteList[fruitIdx]);
-                GameManager.Inst.Get_SliceSpriteList.Add(Resources.Load<Sprite>("Image/SliceFruit/" + _fruitSpriteList[fruitIdx].name + "1"));
-                GameManager.Inst.Get_SliceSpriteList.Add(Resources.Load<Sprite>("Image/SliceFruit/" + _fruitSpriteList[fruitIdx].name + "2"));
+                GameManager.Inst.Get_SliceSpriteList.Add(Resources.Load<Sprite>("SliceFruit/" + _fruitSpriteList[fruitIdx].name + "1"));
+                GameManager.Inst.Get_SliceSpriteList.Add(Resources.Load<Sprite>("SliceFruit/" + _fruitSpriteList[fruitIdx].name + "2"));
             }
             _fruitSpriteList.Remove(_fruitSpriteList[fruitIdx]);
 

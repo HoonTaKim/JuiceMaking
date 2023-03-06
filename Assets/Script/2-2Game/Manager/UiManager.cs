@@ -6,30 +6,22 @@ using TMPro;
 
 public class UiManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI time_Text = null;
-    [SerializeField] private TextMeshProUGUI score_Text = null;
-    [SerializeField] private TextMeshProUGUI combo_Text = null;
-    [SerializeField] private TextMeshProUGUI scoreMinus_Text = null;
-    [SerializeField] private TextMeshProUGUI timeMinus_Text = null;
-    [SerializeField] private RawImage screenCover = null;
+    [SerializeField] private TextMeshProUGUI time_Text = null;              // 게임 시작 표시 텍스트
+    [SerializeField] private TextMeshProUGUI score_Text = null;             // 점수 표시 텍스트
+    [SerializeField] private TextMeshProUGUI combo_Text = null;             // 콤보 표시 텍스트
+    [SerializeField] private TextMeshProUGUI scoreMinus_Text = null;        // 점수 감소 텍스트
+    [SerializeField] private TextMeshProUGUI timeMinus_Text = null;         // 시간 감소 텍스트
+    [SerializeField] private RawImage screenCover = null;                   // 검은색 게임 커버
     [SerializeField] private RawImage startCountImage = null;
-    [SerializeField] private RawImage startCountEndImage = null;
-    [SerializeField] private List<Texture2D> startCountImageList = null;
-    [SerializeField] private GameObject mixer = null;
-    [SerializeField] private Image gameEndImage = null;
-
-    [SerializeField] private GameObject sliceGuide = null;
+    [SerializeField] private RawImage startCountEndImage = null;            // 
+    [SerializeField] private List<Texture2D> startCountImageList = null;    // 자르기 게임 시작 카운트 이미지 리스트
+    [SerializeField] private GameObject mixer = null;                       // 모든 믹서기 게임 오브젝트
+    [SerializeField] private Image gameEndImage = null;                     // 게임 종료 이미지
+    [SerializeField] private GameObject sliceGuide = null;                  // 슬라이드 가이드 오브젝트
     
-    private int scoreSave = 0;
-
-    [SerializeField] private Button mixButton = null;
-    //[SerializeField] private Slider mixSlider = null;
-    [SerializeField] private float[] sliderValue = new float[4];
-    [SerializeField] private float[] sliderSecond = new float[3];
-    [SerializeField] private GameObject moveJucie = null;
-    private bool mixButtonOn = false;
-    private float buttonTime = 0f;
-    private bool gameSet = false;
+    [SerializeField] private GameObject moveJucie = null;                   // 믹서기 내부의 움직이는 주스 오브젝트
+    private bool mixButtonOn = false;                                       // 믹서기의 버튼이 눌렸는지 확인하는 bool값
+    private bool mixerGameSet = false;                                      // 믹서기 게임의 종료 확인 bool값
     public bool Get_MixButtonOn { get { return mixButtonOn; } private set { } }
 
     private void Start()
@@ -37,21 +29,25 @@ public class UiManager : MonoBehaviour
         GameManager.Inst.cutGameStart = true;
     }
 
+
+    #region CutGame
     public void StartCount()
     {
-        StartCoroutine(StartCountOn());
+        StartCoroutine(cutGameStartCountOn());
     }
 
-    private IEnumerator StartCountOn()
+    // 자르기 게임 시작 연출 코루틴
+    private WaitForSeconds wait1 = new WaitForSeconds(1f);
+    private IEnumerator cutGameStartCountOn()
     {
         FindObjectOfType<CommonUI>().gameObject.SetActive(true);
 
         startCountImage.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1);
+        yield return wait1;
         startCountImage.texture = startCountImageList[1];
-        yield return new WaitForSeconds(1);
+        yield return wait1;
         startCountImage.texture = startCountImageList[2];
-        yield return new WaitForSeconds(1);
+        yield return wait1;
         startCountImage.gameObject.SetActive(false);
         startCountEndImage.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
@@ -64,7 +60,7 @@ public class UiManager : MonoBehaviour
         sliceGuide.gameObject.SetActive(false);
     }
 
-    #region CutGame
+    // 자르기 게임 종료시 UI비활성화 시키는 함수
     public void UiOff()
     {
         time_Text.gameObject.SetActive(false);
@@ -73,33 +69,20 @@ public class UiManager : MonoBehaviour
         GameEndImageSetActive(false);
     }
 
-
-    public void MixOn()
-    {
-        mixer.gameObject.SetActive(true);
-    }
-
+    // 게임 시간 텍스트를 최신화
     public void TimeText(float _time)
     {
         _time = Mathf.Floor(_time);
         time_Text.text = _time.ToString();
     }
 
-    public void MimusTime(float time, string minus)
-    {
-        if (minus == "0") return;
-
-        time = Mathf.Floor(time);
-        timeMinus_Text.text = minus;
-        time_Text.text = "-" + time.ToString();
-        StartCoroutine(MinusText(timeMinus_Text));
-    }
-
+    // 스코어 텍스트 최신화
     public void ScoreText(int _score)
     {
         score_Text.text = "점수 : " + _score.ToString();
     }
 
+    // 썩은 과일을 자를시 시간, 점수의 텍스트를 최신화
     public void MinusTime(int boomScore, float boomTime)
     {
         if (boomScore > 0)
@@ -116,6 +99,7 @@ public class UiManager : MonoBehaviour
         }
     }
 
+    // 마이너스되는 텍스트를 비활성화
     IEnumerator MinusText(TextMeshProUGUI _text)
     {
         _text.color = new Color(_text.color.r, _text.color.g, _text.color.b, 1);
@@ -129,6 +113,7 @@ public class UiManager : MonoBehaviour
         _text.gameObject.SetActive(false);
     }
 
+    // 콤보 텍스트 활성화
     public void ComboText(int _combo)
     {
         StartCoroutine(Combo(_combo));
@@ -142,11 +127,13 @@ public class UiManager : MonoBehaviour
         combo_Text.gameObject.SetActive(false);
     }
 
+    // 콤보텍스트 비활성화
     public void ComboTextOff()
     {
         combo_Text.gameObject.SetActive(false);
     }
 
+    // 게임 시작시 검은색 커버를 이동
     public void ScreenCoverOn()
     {
         RectTransform rt = screenCover.GetComponent<RectTransform>();
@@ -170,6 +157,7 @@ public class UiManager : MonoBehaviour
         }
     }
 
+    // 자르기 게임 종료시 종료 이미지 활성화, 비활성화 시키는 함수
     public void GameEndImageSetActive(bool _set)
     {
         gameEndImage.gameObject.SetActive(_set);
@@ -177,32 +165,21 @@ public class UiManager : MonoBehaviour
     #endregion
 
     #region MixerGame
-    private void Update()
+
+    // 믹서기 게임 시작시 모든 오브젝트 활성화
+    public void MixOn()
     {
-        if (mixButtonOn)
-        {
-            buttonTime += Time.deltaTime;
-
-            //if (buttonTime > sliderSecond[0] && buttonTime < sliderSecond[1])
-            //    mixSlider.value += sliderValue[1]; // 0.002f;
-
-            //else if (buttonTime > sliderSecond[1] && buttonTime < sliderSecond[2])
-            //    mixSlider.value += sliderValue[2]; // 0.0025f;
-
-            //else if (buttonTime > sliderSecond[2])
-            //    mixSlider.value += sliderValue[3]; // 0.0029f;
-
-            //else
-            //    mixSlider.value += sliderValue[0]; // 0.0015f;
-        }
+        mixer.gameObject.SetActive(true);
     }
 
+    // 믹서기 버튼이 눌렸을때 실행
     public void OnButtonDown()
     {
-        if (gameSet) return;
+        if (mixerGameSet) return;
         mixButtonOn = true;
     }
 
+    // 믹서기 버튼에서 손을 땟을때 실행
     public void OnButtonUp()
     {
         if (moveJucie.transform.position.y >= -0.25f)
@@ -210,8 +187,6 @@ public class UiManager : MonoBehaviour
             GameManager.Inst.MixerGameEnd();
         }
         mixButtonOn = false;
-        //StartCoroutine(MixerVibrationOff());
-        buttonTime = 0f;
     }
     #endregion
 }

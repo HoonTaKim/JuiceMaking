@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FruitID : MonoBehaviour
 {
-    private RectTransform saveTr = null;
-    private Transform parent = null;
-    private Button button = null;
+    private RectTransform saveTr = null;    // 초기위치를 저장할 변수
+    private Transform parent = null;        // 초기부모를 저장할 변수
+    private Button button = null;           // 위치 초기화할때 사용할 변수
 
-    public int id = 0;
-    [SerializeField] private bool caseIn = false;
+    public int id = 0;                      // 과일의 id
+    [SerializeField] private bool caseIn = false;   // 컵 안으로 이동했는지 
 
     private FruitCase fruitCase = null;
 
@@ -24,20 +22,21 @@ public class FruitID : MonoBehaviour
         button = GetComponent<Button>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        //돌아갈 위치 저장
+        //돌아갈 위치, 부모 저장
         saveTr = transform.parent.GetComponent<Image>().rectTransform;
         parent = transform.parent;
     }
 
+    // 현재 과일이 들어간 컵의 정보 저장
     public void FruitCaseIn(FruitCase _fruitCase)
     {
         fruitCase = _fruitCase;
     }
 
-    public void ButtonOn(bool _trriger)
+    // 컵안에 들어갔을때 혹은 나갔을때 버튼 활성화, 비활성화
+    public void ReSetTR_ButtonOn(bool _trriger)
     {
         button.enabled = _trriger;
     }
@@ -49,17 +48,7 @@ public class FruitID : MonoBehaviour
         this.transform.position = saveTr.position;
         fruitCase.CountChange(1);
         GameManager.Inst.CaseInFruit(-1);
-
-        //나중에수정해주세요제발
-
         fruitCase = null;
-        ButtonOn(false);
-    }
-
-    public bool SetID(int _caseID)
-    {
-        if (id == _caseID) caseIn = true;
-
-        return caseIn;
+        ReSetTR_ButtonOn(false);
     }
 }

@@ -18,30 +18,24 @@ public class FruitNum
 
 public class FruitSpwner : MonoBehaviour
 {
-    [SerializeField] private BoomInfo boom_Obj = null;
-    private FruitInfo fruit = null;
-
+    [SerializeField] private BoomInfo boom_Obj = null;  // 폭탄 오브젝트
+    private FruitInfo fruit = null;                     // 오브젝트 풀로 생성할 오브젝트
 
     private float randomPos_X = 0f;
     private float upPower = 0f;
     private float sidePower = 0f;
-    private bool restOn = false;
-
-    [SerializeField] private float testPower = 0f;
-    [SerializeField] private float testRandomPos_X = 0f;
-    [SerializeField] private float testPushPower = 0f;
-
+    private bool restOn = false;                        // 휴식 시작
 
     [Header("SpawnInfo")]
     private int boomNum = 0;
     private int listIdx = 0;
 
     [Header("SpawnTime")]
-    private float time = 0f;
     private float fruit_PeriodTime = 0f;   // 과일 생성 기준 시간
     private float boom_PeriodTime = 0f;    // 폭탄 생성 기준 시간
-    [SerializeField] private float stop_PeriodTime = 0f;    // 개체 생성 중지의 기준 시간
-    [SerializeField] private float stop_KeepTime = 0f;      // 개체 생성 중지의 유지 시간
+    private float refresh_PeriodTime = 0f;    // 개체 생성 중지의 기준 시간
+    private float refresh_Time = 0f;      // 개체 생성 중지의 유지 시간
+    private WaitForSeconds waitRefresh;
 
     [Header("SpawnSaveTime")]
     private float fruit_spawnTime = 0f;     // 과일의 생성 시간 저장
@@ -56,6 +50,7 @@ public class FruitSpwner : MonoBehaviour
         Init();
     }
 
+    // 값 초기화
     private void Init()
     {
         fruit = null;
@@ -65,8 +60,13 @@ public class FruitSpwner : MonoBehaviour
         restOn = false;
         boom_PeriodTime = GameDatas.Inst.boomTimeSection;
         boomNum = GameDatas.Inst.creatBoomCount;
+
+        refresh_PeriodTime = GameDatas.Inst.refreshCycle;
+        refresh_Time = GameDatas.Inst.refreshTime;
+        waitRefresh = new WaitForSeconds(refresh_Time);
     }
 
+    // 게임이 종료될때까지 Spawn
     private void Update()
     {
         if (GameManager.Inst.Get_GameSet || !GameManager.Inst.Get_CutGameStart) return;
@@ -74,13 +74,13 @@ public class FruitSpwner : MonoBehaviour
         Spawn();
     }
 
+    // 스폰 시간 저장 및 시간에 따라 각기 다른 오브젝트들  생성
     private void Spawn()
     {
         if (restOn) return;
         SpawnPhase();
         if (refresh) return;
 
-        time += Time.deltaTime;
         fruit_spawnTime += Time.deltaTime;
         boom_spawnTime += Time.deltaTime;
         stop_SpawnTime += Time.deltaTime;
@@ -91,7 +91,7 @@ public class FruitSpwner : MonoBehaviour
             FruitSpwn(GameDatas.Inst.creatFruit_MinCount[listIdx], GameDatas.Inst.creatFruit_MaxCount[listIdx]);
         if (boom_spawnTime >= boom_PeriodTime)
             BoomSpwn();
-        if (stop_PeriodTime >= stop_SpawnTime)
+        if (stop_SpawnTime >= refresh_PeriodTime)
             StopTime();
 
         for (int i = 0; i < GameDatas.Inst.boomAddCreatCount.Count; i++)
@@ -103,6 +103,7 @@ public class FruitSpwner : MonoBehaviour
         }
     }
 
+    // 페이즈에 따라 생성개수가 달라지기 때문에 나눈 페이즈
     private void SpawnPhase()
     {
         switch (GameManager.Inst.Get_PAGE)
@@ -123,7 +124,7 @@ public class FruitSpwner : MonoBehaviour
     }
     
 
-    // 하드코딩 수정
+    // 과일 생성
     private void FruitSpwn(int _min, int _max)
     {
         for (int i = 0; i < Random.Range(_min, _max); i++)
@@ -179,6 +180,7 @@ public class FruitSpwner : MonoBehaviour
         fruit_spawnTime = 0f;
     }
 
+    // 폭탄 생성
     private void BoomSpwn()
     {
         float randomPos_X = 0f;
@@ -240,9 +242,21 @@ public class FruitSpwner : MonoBehaviour
         boom_spawnTime = 0;
     }
 
+    // 휴식 시작
     private void StopTime()
     {
-        //refresh = true;
+        if (!refresh)
+        {
+            StartCoroutine(RefreshTime());
+        }
+    }
 
+    IEnumerator RefreshTime()
+    {
+        refresh = true;
+        yield return waitRefresh;
+        refresh = false;
+
+        stop_SpawnTime = 0f;
     }
 }

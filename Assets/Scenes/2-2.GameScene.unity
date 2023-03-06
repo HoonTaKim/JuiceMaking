@@ -1636,15 +1636,6 @@ MonoBehaviour:
   gameEndImage: {fileID: 1454740985}
   sliceGuide: {fileID: 579776341}
   mixButton: {fileID: 15604030}
-  sliderValue:
-  - 0.4
-  - 0.43
-  - 0.49
-  - 0.53
-  sliderSecond:
-  - 2
-  - 3
-  - 4
   moveJucie: {fileID: 586990146}
 --- !u!1 &497856317
 GameObject:
@@ -3244,7 +3235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885221625}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.1, y: 0, z: 0}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3435,8 +3426,6 @@ MonoBehaviour:
   testPower: 160
   testRandomPos_X: 8
   testPushPower: 650
-  stop_PeriodTime: 3
-  stop_KeepTime: 1.5
 --- !u!1 &960444569
 GameObject:
   m_ObjectHideFlags: 0
@@ -4593,14 +4582,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixerWall: {fileID: 1830493244}
-  mixerObjs: {fileID: 1477647355}
-  mixerImage: {fileID: 586990146}
+  rightMove_JuiceObj: {fileID: 1477647355}
+  upMove_JuiceObj: {fileID: 586990146}
   mixerUi: {fileID: 1790007932}
   mixerBackGround1: {fileID: 1601177409}
   mixerBackGround2: {fileID: 891947796}
   mixerBackGround3: {fileID: 248059501}
   mixer: {fileID: 885221625}
-  juice: {fileID: 586990146}
   mixerButtonGuide1: {fileID: 1121340188}
   mixerButtonGuide2: {fileID: 500565332}
   mixerButton: {fileID: 15604030}

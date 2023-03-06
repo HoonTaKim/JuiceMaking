@@ -85,21 +85,7 @@ public class CommonUI : MonoBehaviour
         //restart 버튼 눌렀을때 동작은 여기에서
         Time.timeScale = 1f;
         UIPanel.SetActive(false);
-        SceneManager.LoadScene("1.StartScene");
-        //현재 게임 타입 따라 분기가 필요
-        //switch (GameData.Inst.type)
-        //{
-        //    case GAMETYPE.DRAW:
-        //        LoadSceneManager.LoadSceneAsync("02_1. DrawScene");
-        //        SoundManager.Inst.PlaySFX("SFX_ClickBtn");
-        //        break;
-        //    default:
-        //        LoadSceneManager.LoadSceneAsync("02_23. SelectPhotoScene");
-        //        SoundManager.Inst.PlaySFX("SFX_ClickBtn");
-        //        break;
-
-        //}
-        //SceneManager.LoadScene("1.StartSCene");
+        SceneManager.LoadScene("2-1.GameScene");
         Destroy(FindObjectOfType<GameManager>().gameObject);
     }
 
@@ -112,6 +98,7 @@ public class CommonUI : MonoBehaviour
         UIPanel.SetActive(false);
         SoundManager.Inst.PlayBGM("SFX_ChangeScene");
         // 씬매니저로 마을로 가는거
+        SceneManager.LoadScene("1.StartScene");
 
 
 
@@ -120,7 +107,7 @@ public class CommonUI : MonoBehaviour
 
     public void Btn_Help()
     {
-        Debug.Log("미?구현");
+        Debug.Log("미구현");
         SoundManager.Inst.PlaySFX("SFX_ClickBtn");
     }
 

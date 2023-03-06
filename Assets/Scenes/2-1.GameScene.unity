@@ -552,45 +552,6 @@ MonoBehaviour:
   fruitCount: 7
   storageParent: {fileID: 1291531649}
   fruitPrefab: {fileID: 4525969489764886053, guid: 2feef8d0d544d9240b4adb44f51947b6, type: 3}
-  sliceTextuerList:
-  - {fileID: 21300000, guid: 016771e8b489e7a46a97511b96c19cdf, type: 3}
-  - {fileID: 21300000, guid: 97ba22f0b3a562646b3f2af49e8e5020, type: 3}
-  - {fileID: 21300000, guid: df8b3537f1867d24c94e7a68942837cc, type: 3}
-  - {fileID: 21300000, guid: 1c2aba38f6e825e4db334af61b7a7d07, type: 3}
-  - {fileID: 21300000, guid: 4280b00d83d17294a95982a87aee0ac0, type: 3}
-  - {fileID: 21300000, guid: 32b15ed2e7263cd479b6b19bb6afe708, type: 3}
-  - {fileID: 21300000, guid: 092522c9bf185b14bb310fc2550af7b8, type: 3}
-  - {fileID: 21300000, guid: a1e772146bf701b4286cb322681e72ec, type: 3}
-  - {fileID: 21300000, guid: f6f7ca82684681741839ab6ab0b6cbc4, type: 3}
-  - {fileID: 21300000, guid: 2bfb424ab7432cb41aa3abda3e1a8d78, type: 3}
-  - {fileID: 21300000, guid: f8058a482620eca41a9dbba16a492d15, type: 3}
-  - {fileID: 21300000, guid: 28c05c20d6b17c64c8eb1d16637484b5, type: 3}
-  - {fileID: 21300000, guid: ce17392c938815146ad2d47c4ce01b37, type: 3}
-  - {fileID: 21300000, guid: 2f7e921000d09d84f9383dc0465ab23d, type: 3}
-  - {fileID: 21300000, guid: fcc77ed3d158f114699b95ab18dc3e18, type: 3}
-  - {fileID: 21300000, guid: 3ea5286f604658f45802ca6addb8a3f4, type: 3}
-  - {fileID: 21300000, guid: 0a5d0386e62b1b74f86e067e30d705aa, type: 3}
-  - {fileID: 21300000, guid: eb1b147c05069db4e8c764722d0420b2, type: 3}
-  - {fileID: 21300000, guid: 25c9e6014eba1a942be926fc2ed10f79, type: 3}
-  - {fileID: 21300000, guid: 7220b895c60d3b74f88eeba71e00434e, type: 3}
-  - {fileID: 21300000, guid: 96b0014daa8c5664fbbc9dd64caf0f46, type: 3}
-  - {fileID: 21300000, guid: 3c132e25085d51a48b7f3523dd11118f, type: 3}
-  - {fileID: 21300000, guid: 9d745b1e26902f94792687ca9d33bb54, type: 3}
-  - {fileID: 21300000, guid: 010c74031f519a243807647d6e806ee1, type: 3}
-  - {fileID: 21300000, guid: a92beb07e75decb4298e4d83e3cd29c7, type: 3}
-  - {fileID: 21300000, guid: 202c303b8e2710744ba5b02548832ccc, type: 3}
-  - {fileID: 21300000, guid: ad1bc726fdf2ff2488a70aadefeaf766, type: 3}
-  - {fileID: 21300000, guid: 826dbf3ce6a556b478b4699272d0b9ef, type: 3}
-  - {fileID: 21300000, guid: 9a255cbbec20f724496aa10e1fa3e8be, type: 3}
-  - {fileID: 21300000, guid: 329e1498df58c364eac440d3a380bebf, type: 3}
-  - {fileID: 21300000, guid: c912c92722d0437449e07d1cf53a6c94, type: 3}
-  - {fileID: 21300000, guid: cac13955838079c448f9a5a5a466585b, type: 3}
-  - {fileID: 21300000, guid: 99253f66322bcce4dac8f7f31e7c97af, type: 3}
-  - {fileID: 21300000, guid: 32ed2dc8a08be4140bb25ce6856e86d5, type: 3}
-  - {fileID: 21300000, guid: 46c6397d5227a8a4eaaae93179e06249, type: 3}
-  - {fileID: 21300000, guid: dc2b3858d43e9d641b0b8c611d348307, type: 3}
-  - {fileID: 21300000, guid: fc12f3b3a9bb35745a7af3d4db4b739b, type: 3}
-  - {fileID: 21300000, guid: aba20eb5a2293d7459cb27366d1600f6, type: 3}
   fruit_DataList: []
   leftCupFruit_Image: []
   rightCupFruit_Image: []
@@ -1343,7 +1304,6 @@ GameObject:
   - component: {fileID: 389772756}
   - component: {fileID: 389772759}
   - component: {fileID: 389772758}
-  - component: {fileID: 389772760}
   m_Layer: 5
   m_Name: OrderList_1
   m_TagString: Untagged
@@ -1408,21 +1368,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389772755}
   m_CullTransparentMesh: 1
---- !u!114 &389772760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 389772755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b77d2b85c114ce2488f5920305c4ad12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tmp: {fileID: 1828563795}
-  buttonImage: {fileID: 116038572}
-  cloneOrderSheetOn: 0
 --- !u!1 &428740866
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,7 +1644,7 @@ RectTransform:
   m_GameObject: {fileID: 486809412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 241007057}
@@ -2009,8 +1954,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1973729211}
   m_HandleRect: {fileID: 1973729210}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2136,7 +2081,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui: {fileID: 486809412}
   orderList: {fileID: 271716797}
-  moveSpeed: 70
 --- !u!1 &744187564
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,7 +2166,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 902247653}
         m_TargetAssemblyTypeName: SelectFruit_UiManager, Assembly-CSharp
-        m_MethodName: OnFruitTransfromReset
+        m_MethodName: OnClick_FruitTransfromReset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2390,19 +2334,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b0658355cebc940b72b693c7bb9d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveOrderImage: {fileID: 0}
-  saveJuiceColor: {r: 0, g: 0, b: 0, a: 0}
-  saveOrderName: 
-  cutGameStart: 0
-  cutStart: 0
-  curTime: 0
-  score: 0
-  mixerEnd: 0
   leftCup: {fileID: 1232613325}
   rightCup: {fileID: 1565970040}
   mixedColorImage: {fileID: 840177358}
   leftFruit: {fileID: 1608768244}
   rightFruit: {fileID: 983996235}
+  saveOrderImage: {fileID: 0}
+  saveOrderName: 
+  saveJuiceColor: {r: 0, g: 0, b: 0, a: 0}
+  cutGameStart: 0
+  cutStart: 0
+  curTime: 0
+  score: 0
+  mixerEnd: 0
 --- !u!1 &902247652
 GameObject:
   m_ObjectHideFlags: 0
@@ -2432,15 +2376,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09cb8b46b8401994e9a67cd0022dd57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  juiceParent: {fileID: 371420137}
+  orderParent: {fileID: 371420137}
   canvas: {fileID: 503452891}
-  receip_Obj: {fileID: 4439630941906752048}
+  orderObj: {fileID: 4439630941906752048}
   storageBox: {fileID: 1658484673}
-  goodA: {fileID: 1599772606}
+  endParticle: {fileID: 1599772606}
   goodAni: {fileID: 76120233}
   screenCover: {fileID: 73845226}
   wrongTextImage: {fileID: 8247935123135198460, guid: 9a122ae49c4af32468aaf510658d298a, type: 3}
-  panel: {fileID: 95137430}
+  orderPanel: {fileID: 95137430}
   orderList: {fileID: 271716797}
   orderRope: {fileID: 1529375024}
   title: {fileID: 1464706549}
@@ -2977,7 +2921,6 @@ GameObject:
   - component: {fileID: 1268388120}
   - component: {fileID: 1268388123}
   - component: {fileID: 1268388122}
-  - component: {fileID: 1268388124}
   m_Layer: 5
   m_Name: OrderList_3
   m_TagString: Untagged
@@ -3042,21 +2985,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268388119}
   m_CullTransparentMesh: 1
---- !u!114 &1268388124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268388119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b77d2b85c114ce2488f5920305c4ad12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tmp: {fileID: 435980572}
-  buttonImage: {fileID: 1598941332}
-  cloneOrderSheetOn: 0
 --- !u!1 &1291531648
 GameObject:
   m_ObjectHideFlags: 0
@@ -3778,7 +3706,7 @@ GameObject:
   - component: {fileID: 1599772606}
   - component: {fileID: 1599772605}
   m_Layer: 5
-  m_Name: Comp
+  m_Name: EndParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4047,8 +3975,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 902247653}
-        m_TargetAssemblyTypeName: ReceiptButton, Assembly-CSharp
-        m_MethodName: StorageMove
+        m_TargetAssemblyTypeName: SelectFruit_UiManager, Assembly-CSharp
+        m_MethodName: OnClick_StorageMove
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4809,7 +4737,6 @@ GameObject:
   - component: {fileID: 2950185635101778976}
   - component: {fileID: 5105807439690951912}
   - component: {fileID: 4785418325832495921}
-  - component: {fileID: 5105807439690951913}
   m_Layer: 5
   m_Name: OrderList_2
   m_TagString: Untagged
@@ -4909,21 +4836,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553838122368374544}
   m_CullTransparentMesh: 1
---- !u!114 &5105807439690951913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553838122368374544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b77d2b85c114ce2488f5920305c4ad12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tmp: {fileID: 8562274568792694935}
-  buttonImage: {fileID: 39789389911630176}
-  cloneOrderSheetOn: 0
 --- !u!222 &5398534871290155456
 CanvasRenderer:
   m_ObjectHideFlags: 0

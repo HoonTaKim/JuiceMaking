@@ -1,14 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RopeAnimationCurve : MonoBehaviour
 {
-    public AnimationCurve moveCurve = null;
-
-    //public RectTransform childTr;
-    private RawImage ri = null;
+    public AnimationCurve moveCurve = null;     // 애니메이션 커브
+    private RawImage ri = null;                 // 로프 이미지
     private RectTransform rt = null;
 
     private void Awake()
@@ -22,14 +19,12 @@ public class RopeAnimationCurve : MonoBehaviour
         StartCoroutine(Move());
     }
 
+    // 애니메이션 커브를통해 이동 후 삭제
     IEnumerator Move()
     {
         float time = 0f;
-        //Debug.Log("코루틴은 들어옴?");
         while (time < 1.3)
         {
-            //Debug.Log("while문 실행?");
-
             time += Time.deltaTime;
 
             rt.localPosition = Vector2.up * moveCurve.Evaluate(time);

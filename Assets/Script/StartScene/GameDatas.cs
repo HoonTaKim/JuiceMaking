@@ -42,8 +42,9 @@ public class GameDatas : MonoBehaviour
     public int boomTime = 0;                                        // 폭탄으로 깎이는 시간
     public List<int> boomAddCreatCount = new List<int>();           // 폭탄의 추가 생성 개수
 
-
-
+    [Header("휴식시간 정보")]
+    public float refreshTime = 0f;                                  // 휴식시간
+    public float refreshCycle = 0f;                                 // 휴식시간 주기
 
     private void Awake()
     {
@@ -54,6 +55,7 @@ public class GameDatas : MonoBehaviour
         SoundManager.Inst.PlayBGM("TalkingCuteChiptune");
     }
 
+    // 데이터 입력
     public void DataSeting(List<string> dataList, int idx)
     {
         string[] splitData = dataList[idx].Split(",");
@@ -104,6 +106,16 @@ public class GameDatas : MonoBehaviour
         SoundManager.Inst.PlayBGM("Hoppin_#039J");
     }
 
+    // 플로우2의 과일 스폰 중지 시간 입력
+    public void RefreshTimeData(List<string> dataList)
+    {
+        string[] data = dataList[0].Split(",");
+
+        refreshCycle = float.Parse(data[2]);
+        refreshTime = float.Parse(data[3]);
+    }
+
+    // 최종 게임 스코어 저장
     public void RewardSeting(int score)
     {
         Debug.Log("최종 스코어 : " + score);

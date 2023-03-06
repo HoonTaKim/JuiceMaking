@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+// 좌측 상단의 로프에 달릴 주문서 스크립트
 public class ReceipInfo : MonoBehaviour
 {
     RectTransform rt = null;
@@ -13,6 +14,7 @@ public class ReceipInfo : MonoBehaviour
         rt = GetComponent<RectTransform>();
     }
 
+    // 초기화 함수
     public void Init(Texture _texture, string _name)
     {
         GetComponent<RawImage>().texture = _texture;
@@ -21,6 +23,7 @@ public class ReceipInfo : MonoBehaviour
         StartCoroutine(ScaleOn());
     }
 
+    // 스케일을 조절해 작아졌다 커지는 연출 코루틴
     IEnumerator ScaleOn()
     {
         while (rt.localScale.x <= 1.1f)

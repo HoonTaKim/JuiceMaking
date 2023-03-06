@@ -6,18 +6,17 @@ using UnityEngine.UI;
 public class StartDirection : MonoBehaviour
 {
     [SerializeField] private GameObject ui = null;
-    [SerializeField] private Image orderList = null;
+    [SerializeField] private Image orderList = null;    // 주문서 리스트
     private bool receiptOn = false;
 
-    public float moveSpeed = 70f;
+    private float moveSpeed = 1500f;
 
     private void Start()
     {
         StartCoroutine(DirectionOn());
     }
 
-    WaitForSeconds wait0001 = new WaitForSeconds(0.001f);
-
+    // Scale값을 조절해 카메라가 점점 축소되는듯한 연출
     private IEnumerator DirectionOn()
     {
         GameManager.Inst.Set_DirectionWait(true);
@@ -37,13 +36,14 @@ public class StartDirection : MonoBehaviour
         ui.transform.localScale = new Vector3(1, 1, 1);
     }
 
+    // 주문서들을 화면 중심으로 이동시키는 코루틴
     private IEnumerator ReceiptOn()
     {
         RectTransform rt = orderList.GetComponent<RectTransform>();
 
         while (rt.localPosition.x < 0)
         {
-            rt.localPosition = new Vector3(rt.localPosition.x + (Time.deltaTime * 1500f), rt.localPosition.y, 0);
+            rt.localPosition = new Vector3(rt.localPosition.x + (Time.deltaTime * moveSpeed), rt.localPosition.y, 0);
             yield return null;
         }
 

@@ -21,42 +21,12 @@ public class JuiceColor : MonoBehaviour
 {
     [SerializeField] private Image juice = null;
 
-    private Color saveColor = Color.white;      // 저장될 색상
-    private bool firstIn = false;               // 색이 들어왔는지 판단
-
-    private Color red = Color.red;
-    private Color orange = new Color(255, 127, 0);
-    private Color yellow = Color.yellow;
-    private Color lime = new Color(22, 216, 63);
-    private Color green = Color.green;
-    private Color skyblue;
-    private Color blue;
-    private Color purple;
-    private Color pink;
-    private Color asd;
-
     private void Awake()
     {
         juice.color = Color.white;
-
-    }
-    public void ChangeColor(Color _color)
-    {
-        /*
-        switch (_color)
-        {
-            case Color.white:
-                switch (_color2)
-                {
-                    case Color.black:
-                        resultcolor = purplecolr;
-                        break;
-                }
-                break;
-        }
-        */
     }
 
+    // 색상 지정
     public static Color singleColor(FRUITCOLOR color)
     {
         Debug.Log(color);
@@ -90,6 +60,8 @@ public class JuiceColor : MonoBehaviour
 
         return singleColor;
     }
+
+    // 색 섞는 함수
     public static Color mixColor(FRUITCOLOR color1, FRUITCOLOR color2)
     {
         //만약 확인했는데 색이 black으로 나오면 어디선가 오류가 떳다는거임
@@ -198,38 +170,13 @@ public class JuiceColor : MonoBehaviour
                 }
                 break;
             default:
-                Debug.Log("ㅈ댐");
                 mixedColor = Color.black;
                 break;
 
         }
 
-
-        Debug.Log(mixedColor);
-
         mixedColor = mixedColor / 255;
         return mixedColor;
     }
-
 }
-
-
-//    return mixedColor;
-
-/*
-public void ChangeColor(Color _color)
-{
-    switch (_color)
-    {
-        case Color.white:
-            switch (_color2)
-            {
-                case Color.black:
-                    resultcolor = purplecolr;
-                    break;
-            }
-            break;
-    }
-}
-*/
 

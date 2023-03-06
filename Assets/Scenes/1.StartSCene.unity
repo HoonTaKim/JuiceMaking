@@ -2542,6 +2542,8 @@ MonoBehaviour:
   boomScore: 0
   boomTime: 0
   boomAddCreatCount: 
+  refreshTime: 0
+  refreshCycle: 0
 --- !u!1 &1944673738
 GameObject:
   m_ObjectHideFlags: 0
